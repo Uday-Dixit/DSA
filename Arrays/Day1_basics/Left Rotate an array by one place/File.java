@@ -1,11 +1,18 @@
 class File {
     public void rotate(int[] nums, int k) {
-        for(int i=0;i<k;i++){
-            int temp=nums[nums.length-1];
-            for(int j=0;j<nums.length-1;j++){
-                nums[nums.length-1-j]=nums[nums.length-2-j];
-            }
-            nums[0]=temp;
+        k=k%nums.length;// if k is greater than array length so 1 cycle is roated and array remain same so we only rotate remaining part.
+        reverse(nums,0,nums.length-1);
+        reverse(nums,0,k-1);
+        reverse(nums,k,nums.length-1);
+    }
+    public void reverse(int[] nums, int left, int right){
+        while(left<right){
+            int temp=nums[left];
+            nums[left]=nums[right];
+            nums[right]=temp;
+
+            left++;
+            right--;
         }
     }
 }
